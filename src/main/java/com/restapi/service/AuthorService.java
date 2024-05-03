@@ -31,7 +31,7 @@ public class AuthorService {
     }
 
     public AuthorResponse update(AuthorRequest authorRequest) {
-        Author author = authorDto.mapToAuthor(authorRequest);
+        Author author = authorDto.  mapToAuthor(authorRequest);
         authorRepository.save(author);
         return findAll();
     }

@@ -38,7 +38,7 @@ public class DownloadController {
         headers.add("Expires", "0");
         return ResponseEntity.ok()
                 .headers(headers)
-                .contentLength(file.length())
+                .contentLength(file.length( ))
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(resource);
     }

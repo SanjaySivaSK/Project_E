@@ -24,10 +24,10 @@ public class Author {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    private String Author;
+    private String author;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Book> bookList = new ArrayList<>();
 
     @CreationTimestamp

@@ -24,7 +24,7 @@ public class Book {
 
     private String book;
 
-    @Column(nullable = false, length = 200)
+    @Column
     private String description;
 
     @ManyToOne
@@ -39,18 +39,19 @@ public class Book {
     @JoinColumn(name="category_id",referencedColumnName = "id")
     private Category category;
 
-    @Column(name = "returned", updatable = false)
-    private boolean returned = true;
 
+
+    private int  Stock;
 
 
     private String photo;
 
     @JsonIgnore
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    private List<Book> booklist = new ArrayList<>();
+    private List<Notifications> notificationsList = new ArrayList<>();
 
 //    private boolean request=false;
+     private  boolean deleteFlag;
 
     @CreationTimestamp
     @Column(updatable = false)

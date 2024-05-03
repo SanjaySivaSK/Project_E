@@ -18,6 +18,8 @@ public class UserHistoryRequest {
 
     private String issuedDate;
     private String returnDate;
+    private Long fineAmount;
+    private boolean decline;
 
 
 

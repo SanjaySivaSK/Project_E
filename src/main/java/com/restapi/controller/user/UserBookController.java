@@ -31,7 +31,7 @@ public class UserBookController {
 
     @GetMapping("/all")
     public ResponseEntity<APIResponse> getAllBooks() {
-        List<Book> bookList = bookService.findAll();
+        List<Book> bookList = bookService.FindAll();
         apiResponse.setStatus(HttpStatus.OK.value());
         apiResponse.setData(bookList);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);

@@ -42,8 +42,6 @@ public class AdminCategoryController {
         CategoryResponse categoryResponse = categoryService.create(categoryRequest);
         apiResponse.setStatus(HttpStatus.OK.value());
         apiResponse.setData(categoryResponse.getCategories());
-        System.out.println(categoryResponse.getCategories()+"dddddddddddddd");
-        System.out.println(categoryResponse+"Ddddd");
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
@@ -59,8 +57,6 @@ public class AdminCategoryController {
     @DeleteMapping("/{id}")
     public ResponseEntity<APIResponse> deleteCategory(@PathVariable Integer id) {
         CategoryResponse categoryResponse = categoryService.deleteById(id);
-        System.out.println(categoryResponse);
-        System.out.println(id);
         apiResponse.setStatus(HttpStatus.OK.value());
         apiResponse.setData(categoryResponse.getCategories());
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);

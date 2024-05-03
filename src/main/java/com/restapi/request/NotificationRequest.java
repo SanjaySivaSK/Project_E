@@ -11,5 +11,6 @@ public class NotificationRequest {
     private Long userId;
     private Long bookId;
     private boolean request;
+    private boolean renewal;
 
 }

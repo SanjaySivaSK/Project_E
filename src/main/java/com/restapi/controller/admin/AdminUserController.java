@@ -1,10 +1,8 @@
 package com.restapi.controller.admin;
 
 import com.restapi.model.AppUser;
-import com.restapi.model.Book;
 import com.restapi.model.Role;
 import com.restapi.repository.UserRepository;
-import com.restapi.response.UserHistoryResponse;
 import com.restapi.response.common.APIResponse;
 import com.restapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.Optional;
@@ -33,8 +30,8 @@ public class AdminUserController {
     private UserService userservice;
 
     @GetMapping("/all")
-    public ResponseEntity<APIResponse> getAllusers() {
-        List<AppUser> users = userservice.finduserAll();
+    public ResponseEntity<APIResponse> findusers() {
+        List<AppUser> users = userservice.findusers();
         apiResponse.setStatus(HttpStatus.OK.value());
         apiResponse.setData(users);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);

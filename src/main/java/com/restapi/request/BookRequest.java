@@ -23,13 +23,14 @@ public class BookRequest {
     private String book;
 
     @NotEmpty
-    @Size(min = 10, message = "book-description should have at least 10 characters")
     private String description;
 
     @NotNull
         private Long authorId;
 
-private String photo;
+        private String photo;
+
+        private int Stock;
 
 
 

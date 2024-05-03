@@ -17,17 +17,24 @@ public class UserHistoryDto {
         if(userHistoryRequest.getId()!=null){
             userHistory.setId(userHistoryRequest.getId());
 
+
+
+
         }
          userHistory.setIssuedDate(userHistoryRequest.getIssuedDate());
+
         userHistory.setReturnDate(userHistoryRequest.getReturnDate());
         userHistory.setReturned(false);
+        userHistory.setRenewal(false);
+
+
          return userHistory;
 
 
     }
 
 
-    public static List<UserHistoryResponse> mapToUserResponse(List<UserHistory> userHistoryList) {
+    public static List<UserHistoryResponse>mapToUserResponse(List<UserHistory> userHistoryList) {
        List<UserHistoryResponse>  userHistoryResponseList=new ArrayList<>();
 
         for(UserHistory userHistory:userHistoryList){
@@ -38,7 +45,12 @@ public class UserHistoryDto {
             userHistoryResponse.setIssuedDate(userHistory.getIssuedDate());
             userHistoryResponse.setReturnDate(userHistory.getReturnDate());
             userHistoryResponse.setId(userHistory.getId());
+            userHistoryResponse.setReturned(userHistory.isReturned());
+            userHistoryResponse.setRenewal(userHistory.isRenewal());
+            userHistoryResponse.setFineAmount(userHistory.getFineAmount());
+            userHistoryResponse.setBookId(userHistory.getBook().getId());
             userHistoryResponseList.add(userHistoryResponse);
+
 
         }
 

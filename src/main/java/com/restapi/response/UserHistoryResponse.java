@@ -16,6 +16,9 @@ public class UserHistoryResponse {
         private String issuedDate;
         private String returnDate;
         private boolean returned;
+        private Long fineAmount;
+        private Long BookId;
+        private boolean renewal;
 
 
 

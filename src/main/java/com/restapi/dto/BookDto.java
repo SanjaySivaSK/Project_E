@@ -16,11 +16,12 @@ public class BookDto {
         Book book = new Book();
         if (bookRequest.getId() != null) {
             book.setId(bookRequest.getId());
-        }
 
-        book.setBook(bookRequest.getBook());
+        }
+        book.setBook(bookRequest.getBook(   ));
         book.setDescription(bookRequest.getDescription());
         book.setPhoto(bookRequest.getPhoto());
+        book.setStock(bookRequest.getStock());
         return book;
     }
 }

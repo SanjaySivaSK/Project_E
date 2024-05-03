@@ -1,9 +1,8 @@
 package com.restapi.controller.admin;
 
-import com.restapi.model.Notifications;
+
 import com.restapi.model.Role;
 import com.restapi.model.UserHistory;
-import com.restapi.response.UserHistoryResponse;
 import com.restapi.response.common.APIResponse;
 import com.restapi.service.UserHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;

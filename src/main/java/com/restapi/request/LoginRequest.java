@@ -13,7 +13,7 @@ public class LoginRequest {
 
     @NotEmpty
     @Size(min = 2, message = "Username should have at least 2 characters")
-//    @Pattern(regexp = "^[A-Z][a-zA-Z0-9]*$", message = "Username must start with a capital letter")
+   @Pattern(regexp = "^[A-Z][a-zA-Z0-9]*$", message = "Username must start with a capital letter")
     private String username;
 
     @NotEmpty

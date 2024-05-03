@@ -2,6 +2,7 @@ package com.restapi.service;
 
 import com.restapi.dto.BookDto;
 import com.restapi.exception.common.ResourceNotFoundException;
+import com.restapi.model.AppUser;
 import com.restapi.model.Author;
 import com.restapi.model.Book;
 
@@ -10,6 +11,7 @@ import com.restapi.model.Category;
 import com.restapi.repository.AuthorRepository;
 import com.restapi.repository.BookRepository;
 import com.restapi.repository.CategoryRepository;
+import com.restapi.repository.UserRepository;
 import com.restapi.request.BookRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,10 @@ public class BookService {
     @Autowired
     private StorageService storageService;
 
+    public List<Book> FindAll() {
+
+        return bookRepository.FindAll();
+    }
     public List<Book> findAll() {
 
         return bookRepository.findAll();
@@ -62,7 +68,7 @@ public class BookService {
         book.setCategory(category);
         book.setAuthor(author);
         bookRepository.save(book);
-        return findAll();
+        return FindAll();
 
     }
 
@@ -76,22 +82,30 @@ public class BookService {
                         "AuthorId", bookRequest.getAuthorId()));
         book.setCategory(category);
         book.setAuthor(author);
+        Book existingBook = bookRepository.findById(bookRequest.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("id",
+               "id", bookRequest.getId()));
+
+        book.setPhoto(existingBook.getPhoto());
+
         bookRepository.save(book);
-        return findAll();
+        return FindAll();
     }
 
-    public List<Book> deleteById(Integer id) {
-        bookRepository.deleteById(Long.valueOf(id));
-        return findAll();
+    public String DeleteById(Integer id) {
+        bookRepository.DeleteById(Long.valueOf(id));
+        return "deleted";
 
 
     }
 
-    public List<Book> findById(Long userId) {
-        bookRepository.findById(userId);
-        return findAll();
 
-    }
+//    public List<Book> findById(Long userId) {
+//        bookRepository.findById(userId);
+//        return FindAll();
+//}
+
+
 
     public File getFile(Long id) throws IOException {
         Book book= bookRepository.findById(id)

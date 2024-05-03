@@ -31,7 +31,7 @@ public class UserHistory {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private AppUser appUser;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     private Book book;
 
@@ -40,6 +40,12 @@ public class UserHistory {
     private boolean returned;
 
     private String returnDate;
+    private Long fineAmount;
+
+    private boolean renewal=false;
+
+
+
 
 
     @CreationTimestamp

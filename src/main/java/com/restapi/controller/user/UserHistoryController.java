@@ -34,12 +34,25 @@ public class UserHistoryController {
       return new ResponseEntity<>(apiResponse, HttpStatus.OK);
 
    }
-   @PutMapping("/{id}")
-    public ResponseEntity<APIResponse>returnBooks(@PathVariable Long id){
-        String rBOOK= userHistoryService.returnBooks(id);
+   @PutMapping("/{id}/update/{amt}/Book/{BookId}")
+    public ResponseEntity<APIResponse>returnBooks(@PathVariable Long id,
+                                                  @PathVariable Long amt,
+                                                   @PathVariable Long BookId){
+        String rBOOK= userHistoryService.returnBooks(id,amt,BookId);
+       System.out.println(amt);
+       System.out.println(id);
        apiResponse.setStatus(HttpStatus.OK.value());
        apiResponse.setData(rBOOK);
        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
    }
+    @PutMapping("/Renewal/{id}")
+    public ResponseEntity<APIResponse> Renewal(@PathVariable Long id) {
+        System.out.println(id+"dddd");
+        String RenewalBook = userHistoryService.Renewal(id);
+
+        apiResponse.setStatus(HttpStatus.OK.value());
+        apiResponse.setData(RenewalBook);
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
 
 }

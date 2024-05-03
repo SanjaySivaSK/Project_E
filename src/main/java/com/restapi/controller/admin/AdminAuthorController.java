@@ -2,17 +2,13 @@ package com.restapi.controller.admin;
 
 import com.restapi.model.Role;
 import com.restapi.request.AuthorRequest;
-import com.restapi.request.CategoryRequest;
 import com.restapi.response.AuthorResponse;
-import com.restapi.response.CategoryResponse;
 import com.restapi.response.common.APIResponse;
 import com.restapi.service.AuthorService;
-import com.restapi.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 
@@ -33,7 +29,7 @@ public class AdminAuthorController {
 
 
     @GetMapping("/all")
-    public ResponseEntity<APIResponse> getallauthor() {
+    public ResponseEntity<APIResponse> getAllAuthor() {
         AuthorResponse authorResponse = authorService.findAll();
         apiResponse.setStatus(HttpStatus.OK.value());
         apiResponse.setData(authorResponse.getAuthors());
@@ -45,8 +41,6 @@ public class AdminAuthorController {
         AuthorResponse authorResponse = authorService.create(authorRequest);
         apiResponse.setStatus(HttpStatus.OK.value());
         apiResponse.setData(authorResponse.getAuthors());
-        System.out.println(authorResponse.getAuthors()+"dddddddddddddd");
-        System.out.println(authorResponse+"Ddddd");
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
@@ -60,7 +54,7 @@ public class AdminAuthorController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<APIResponse> deleteCategory(@PathVariable Integer id) {
+    public ResponseEntity<APIResponse> deleteAuthor(@PathVariable Integer id) {
         AuthorResponse authorResponse = authorService.deleteById(id);
         System.out.println(authorResponse);
         System.out.println(id);

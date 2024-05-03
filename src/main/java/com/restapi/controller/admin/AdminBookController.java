@@ -36,7 +36,7 @@ public class AdminBookController {
 
     @GetMapping("/all")
     public ResponseEntity<APIResponse> getAllBooks() {
-        List<Book> bookList = bookService.findAll();
+        List<Book> bookList = bookService.FindAll();
         apiResponse.setStatus(HttpStatus.OK.value());
         apiResponse.setData(bookList);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
@@ -46,7 +46,8 @@ public class AdminBookController {
                                                   @RequestParam("categoryId")Long categoryId,
                                                   @RequestParam("book")String book,
                                                   @RequestParam("description")String description,
-                                                  @RequestParam("authorId")Long authorId
+                                                  @RequestParam("authorId")Long authorId,
+                                                  @RequestParam("stock")int stock
                                                   ) throws IOException {
 
 
@@ -55,44 +56,65 @@ public class AdminBookController {
         bookRequest.setBook(book);
         bookRequest.setDescription(description);
         bookRequest.setAuthorId(authorId);
-       bookRequest.setCategoryId(categoryId);
-       bookRequest.setPhoto(file);
+        bookRequest.setCategoryId(categoryId);
+        bookRequest.setStock(stock);
+        bookRequest.setPhoto(file);
+        System.out.println(stock+"cdaadd");
         List<Book> bookList = bookService.createBook(bookRequest);
+
         apiResponse.setStatus(HttpStatus.OK.value());
         apiResponse.setData(bookList);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
 
     }
+    @PutMapping (value = "/update")
+    public ResponseEntity<APIResponse> updateBook(@RequestParam("id")Long id,
+                                                  @RequestParam("categoryId")Long categoryId,
+                                                  @RequestParam("book")String book,
+                                                  @RequestParam("description")String description,
+                                                  @RequestParam("authorId")Long authorId
+
+    ) throws IOException {
 
 
+        BookRequest bookRequest = new BookRequest();
+        bookRequest.setBook(book);
+        bookRequest.setId(id);
+        bookRequest.setDescription(description);
+        bookRequest.setAuthorId(authorId);
+        bookRequest.setCategoryId(categoryId);
 
-
-
-
-
-    @PutMapping
-    public ResponseEntity<APIResponse> updateBook(@Valid @RequestBody
-                                                  BookRequest bookRequest) {
         List<Book> bookList = bookService.updateBook(bookRequest);
+        System.out.println(bookRequest.getId());
         apiResponse.setStatus(HttpStatus.OK.value());
         apiResponse.setData(bookList);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
-    }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<APIResponse> deleteBook(@PathVariable Integer id) {
-        List<Book> bookList = bookService.deleteById(id);
-        apiResponse.setStatus(HttpStatus.OK.value());
-        apiResponse.setData(bookList);
-        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
 
-//     @GetMapping("/request")   public ResponseEntity<APIResponse> notification() {
-//        List<Book> notifications = bookService.requestedBook();
+
+
+
+
+
+
+//    @PutMapping
+//    public ResponseEntity<APIResponse> updateBook(@Valid @RequestBody
+//                                                  BookRequest bookRequest) {
+//        List<Book> bookList = bookService.updateBook(bookRequest);
 //        apiResponse.setStatus(HttpStatus.OK.value());
-//        apiResponse.setData(notifications);
+//        apiResponse.setData(bookList);
 //        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
 //    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<APIResponse> deleteBook(@PathVariable Integer id) {
+         bookService.DeleteById(id);
+        apiResponse.setStatus(HttpStatus.OK.value());
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
+
+
 
 }

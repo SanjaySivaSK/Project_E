@@ -59,4 +59,9 @@ public class UserService {
         return userRepository.findById(userId);
 
     }
+    public List<AppUser> findusers() {
+        List<AppUser> Users=userRepository.findUsers();
+        return Users;
+    }
+
 }
